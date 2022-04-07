@@ -10,14 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_205010) do
+ActiveRecord::Schema.define(version: 2022_04_07_010851) do
 
   create_table "tasks", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 30, null: false
     t.string "description"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
